@@ -4,5 +4,5 @@ Implementation of 3D Card Parallax View.
 
 ![](preview.gif)
 
-Credits:
+# Credits:
 # Ben Cline : https://www.uplabs.com/yocline
