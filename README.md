@@ -5,4 +5,4 @@ Implementation of 3D Card Parallax View.
 ![](preview.gif)
 
 # Credits:
-# Ben Cline : https://www.uplabs.com/yocline
+### **Ben Cline : https://www.uplabs.com/posts/billabong-surf-app-teaser**
