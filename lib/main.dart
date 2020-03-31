@@ -10,7 +10,6 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // setup(context);
 
     return MaterialApp(
       title: '3D Card Parallax View',
