@@ -23,6 +23,7 @@ class _CarouselFlipperState extends State<CarouselFlipper>
   double finishScrollStart;
   double finishScrollEnd;
   AnimationController finishScrollController;
+  CurvedAnimation animation;
 
   @override
   void initState() {
@@ -32,9 +33,9 @@ class _CarouselFlipperState extends State<CarouselFlipper>
       vsync: this,
     )..addListener(() {
         setState(() {
-          print("Start: " + finishScrollStart.toString());
-          print("Value: " + finishScrollController.value.toString());
-          print("End: " + finishScrollEnd.toString());
+          // print("Start: " + finishScrollStart.toString());
+          // print("Value: " + finishScrollController.value.toString());
+          // print("End: " + finishScrollEnd.toString());
           scrollPercent = lerpDouble(
               finishScrollStart, finishScrollEnd, finishScrollController.value);
           if (widget.onScroll != null) {
@@ -42,6 +43,9 @@ class _CarouselFlipperState extends State<CarouselFlipper>
           }
         });
       });
+
+    animation =
+        CurvedAnimation(parent: finishScrollController, curve: Curves.ease);
   }
 
   @override
@@ -102,14 +106,11 @@ class _CarouselFlipperState extends State<CarouselFlipper>
       translation: Offset(cardIndex - cardScrollPercentage, 0.0),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: AnimatedBuilder(
-          animation: finishScrollController,
-          builder: (context, child) => Transform(
-            transform: Matrix4.identity()
-              ..setEntry(3, 2, -0.001)
-              ..rotateY((pi) / 4 * (cardScrollPercentage - cardIndex)),
-            child: CarouselCard(card: cardDetails, parallaxPercent: parallax),
-          ),
+        child: Transform(
+          transform: Matrix4.identity()
+            ..setEntry(3, 2, -0.001)
+            ..rotateY((pi) / 4 * (cardScrollPercentage - cardIndex)),
+          child: CarouselCard(card: cardDetails, parallaxPercent: parallax),
         ),
       ),
     );
